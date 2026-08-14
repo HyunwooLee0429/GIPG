@@ -1,0 +1,1 @@
+{"n": 2, "m": 5, "p": [[583, 70, 484, 262, 896], [908, 713, 538, 531, 101]], "w": [[101, 694, 934, 461, 75], [474, 205, 39, 574, 704]], "b": [1132, 998], "c": [2, 1, 1, 1, 2], "corr": "uncorrelated", "cap_factor": 0.5, "seed": 42615, "meta": {"generator": "pisinger_like", "R": 1000, "notes": "Approximate Pisinger categories; see instance._pisinger_like_knapsack"}}
