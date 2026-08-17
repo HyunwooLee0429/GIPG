@@ -141,6 +141,15 @@ exact arithmetic. A CEI violation is declared when the incumbent's regret exceed
 `1e-9`. Both the master and the best-response models run with 16 threads by
 default; pass `threads=` to change this.
 
+The VEST cut and, for ISBP, the player-anchoring constraint are valid for exact
+equilibria only. `solve_abs` therefore imposes them just in its initial test at
+`alpha = 1` and drops them in every bisection call above it: with either active,
+an infeasible outcome at `alpha > 1` would not certify that no `alpha`-PNE
+exists. Bin-load ordering is valid at every `alpha` and stays on throughout.
+Anchoring is selected automatically on regular ISBP instances and is imposed only
+where `w <= u`, the range in which it is proved; passing `add_player_anchoring`
+explicitly overrides the automatic choice.
+
 Results in the paper were produced with Gurobi 13.0 on an Intel Core Ultra 7
 265F with 32 GB RAM.
 

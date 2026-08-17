@@ -93,6 +93,7 @@ def solve_abs(
             inst, alpha=1e9,
             time_limit=gzr_time_limit, threads=gzr_threads,
             br_time_limit=br_time_limit, verbose=verbose,
+            add_vest_cut=False,
         )
         if res0.profile is None:
             return ABSResult(
@@ -181,6 +182,7 @@ def solve_abs(
             inst, alpha=mid,
             time_limit=gzr_time_limit, threads=gzr_threads,
             br_time_limit=br_time_limit, verbose=verbose,
+            add_vest_cut=(mid <= 1.0 + 1e-12),
         )
         last_gzr = res
         history.append({
@@ -200,11 +202,15 @@ def solve_abs(
             lo = mid
             lb_unverified = mid
 
+    # The weak VEST cut is proved for exact PNE only, so it is dropped once
+    # alpha exceeds one: with it active an Infeasible outcome would not certify
+    # that no alpha-PNE exists, and the lower bound it yields would be invalid.
     # --- Final: confirm hi ---
     res_final = solve_gzr(
         inst, alpha=hi,
         time_limit=gzr_time_limit, threads=gzr_threads,
         br_time_limit=br_time_limit, verbose=verbose,
+        add_vest_cut=(hi <= 1.0 + 1e-12),
     )
     history.append({"phase": "final", "alpha": hi, "status": res_final.status})
     last_gzr = res_final

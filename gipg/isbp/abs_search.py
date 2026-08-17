@@ -183,6 +183,14 @@ def solve_abs(
         n_iters += 1
         alpha_mid = 0.5 * (lb_unverified + ub_verified)
 
+        # The VEST cut and the player-anchoring constraint are proved only for
+        # exact PNE, so they are dropped once alpha exceeds one: with either of
+        # them active an Infeasible outcome would not certify that no
+        # alpha-PNE exists, and the lower bound it produces would be invalid.
+        # auto_cut_selection must be disabled as well, since it otherwise
+        # overrides add_player_anchoring for regular instances. The bin-load
+        # ordering constraint is valid at every alpha and stays on.
+        exact = alpha_mid <= 1.0 + 1e-12
         zr_mid = solve_gzr(
             inst,
             alpha=alpha_mid,
@@ -190,6 +198,9 @@ def solve_abs(
             log_to_console=log_to_console,
             br_cache=br_cache,
             stop_at_first_pne=True,
+            add_vest_cut=exact,
+            auto_cut_selection=exact,
+            add_player_anchoring=exact,
         )
         br_cache = zr_mid.get("br_cache", br_cache)
         time_zr_total += float(zr_mid.get("runtime", 0.0))

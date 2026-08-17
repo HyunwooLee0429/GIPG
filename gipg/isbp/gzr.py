@@ -345,10 +345,10 @@ def solve_gzr(
         bigM: Optional[float] = None,
         time_limit: float = 1800.0,
         gurobi_params: Optional[Dict[str, Any]] = None,
-        add_bin_symmetry_breaking: bool = True,  # Symmetry (i): Total bin ordering
-        add_symmetric_eis: bool = True,          # Symmetry (ii): Additional symmetric breaking EIs
+        add_bin_symmetry_breaking: bool = True,  # order load across identical bins
+        add_symmetric_eis: bool = True,          # CEIs generated from permuted best responses
         add_vest_cut: bool = True,               # VEST cut (valid inequality, not symmetry-breaking)
-        add_player_anchoring: bool = False,      # Symmetry (iii): Player-anchoring cut (w<=u only)
+        add_player_anchoring: Optional[bool] = None,  # None = auto-select on regular instances
         auto_cut_selection: bool = True,
 
         sym_sample_fraction: float = 0.50,
@@ -396,21 +396,22 @@ def solve_gzr(
     # Auto-select cut configuration based on instance regularity.
     #
     # Regular (w<=u):
-    #   Symmetry (i) total bin ordering, (ii) additional CEIs, (iii) player-anchoring
+    #   bin-load ordering, symmetry-generated CEIs, and player anchoring
     #   + VEST cut (at most one unsaturated bin per player)
     #   When warm_start is provided (BRD+GZR), the warm-start profile is
     #   post-processed to satisfy (i) and (iii) before injection.
     #
     # Irregular:
-    #   Symmetry (i) total bin ordering, (ii) additional CEIs
+    #   bin-load ordering and symmetry-generated CEIs
     #   + weaker VEST cut (cuts off shared-unsaturated states)
-    if auto_cut_selection:
-        if is_regular_instance(inst):
-            # Activate player anchoring for regular instances (w<=u
-            # guard is enforced inside build_full_discretized_model).
-            add_player_anchoring = True
-        else:
-            add_player_anchoring = False
+    # Player anchoring is only meaningful on regular instances, so it is
+    # selected automatically unless the caller asked for it explicitly. Passing
+    # add_player_anchoring overrides this choice; the w <= u guard is enforced
+    # inside build_full_discretized_model either way.
+    if auto_cut_selection and add_player_anchoring is None:
+        add_player_anchoring = is_regular_instance(inst)
+    elif add_player_anchoring is None:
+        add_player_anchoring = False
 
     model, x, y, z, groups = build_full_discretized_model(
         inst,
@@ -437,7 +438,7 @@ def solve_gzr(
         ws_total = {j: sum(warm_start[i][j] for i in inst.players) for j in inst.bins}
 
         # --- Permute warm-start within identical-bin groups to satisfy
-        #     Symmetry (i) total bin ordering: decreasing total load.
+        #     bin-load ordering: non-increasing total load.
         if add_bin_symmetry_breaking and any(len(D) > 1 for D in groups):
             for D in groups:
                 if len(D) <= 1:
@@ -456,7 +457,7 @@ def solve_gzr(
                 for j in D:
                     ws_total[j] = sum(warm_start[i][j] for i in inst.players)
 
-        # --- Permute players to satisfy Symmetry (iii) player-anchoring.
+        # --- Permute players to satisfy the player-anchoring constraint.
         #     For regular instances, all players are identical so permutation
         #     preserves the PNE.  Anchoring requires: player i has >0 in bin i
         #     for i = 0..k-1.
