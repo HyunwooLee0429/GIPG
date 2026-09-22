@@ -25,6 +25,7 @@ def solve_social_optimum(
     time_limit: float = 600.0,
     threads: Optional[int] = None,
     verbose: bool = False,
+    log_file: Optional[str] = None,
 ) -> SOResult:
     """Solve the social optimum: max total welfare WITHOUT CEI constraints.
 
@@ -36,6 +37,7 @@ def solve_social_optimum(
         time_limit=time_limit,
         threads=threads,
         verbose=verbose,
+        log_file=log_file,
     )
     mdl = gkgm.model
     # Disable lazy constraints (not needed for SO)

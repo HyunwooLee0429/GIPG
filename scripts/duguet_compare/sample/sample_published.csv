@@ -1,0 +1,15 @@
+file,n,m,their_status_published,their_time_published,their_cuts_published
+2-5-2-uncorr-4.txt,2,5,SOLUTION_FOUND,0.488199,16
+2-10-2-uncorr-0.txt,2,10,SOLUTION_FOUND,4.30952,259
+2-15-2-uncorr-4.txt,2,15,SOLUTION_FOUND,165.381,3276
+2-20-2-weakcorr-0.txt,2,20,SOLUTION_FOUND,261.68,3305
+3-5-5-weakcorr-6.txt,3,5,SOLUTION_FOUND,0.99101,87
+3-10-2-strongcorr-3.txt,3,10,SOLUTION_FOUND,47.2718,2014
+3-15-5-uncorr-8.txt,3,15,SOLUTION_FOUND,452.22,17582
+3-20-5-strongcorr-6.txt,3,20,SOLUTION_FOUND,0.677371,0
+4-5-2-weakcorr-7.txt,4,5,SOLUTION_FOUND,6.22922,160
+4-10-5-uncorr-0.txt,4,10,SOLUTION_FOUND,170.714,9868
+4-15-5-uncorr-5.txt,4,15,SOLUTION_FOUND,519.466,11679
+4-20-5-strongcorr-4.txt,4,20,SOLUTION_FOUND,0.650424,0
+2-30-2-strongcorr-0.txt,2,30,TIME_LIMIT_REACHED,3599.91,36261
+4-30-2-strongcorr-0.txt,4,30,TIME_LIMIT_REACHED,3599.96,69051

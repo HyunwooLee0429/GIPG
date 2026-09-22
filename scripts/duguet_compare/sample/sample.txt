@@ -1,0 +1,14 @@
+2-5-2-uncorr-4.txt
+2-10-2-uncorr-0.txt
+2-15-2-uncorr-4.txt
+2-20-2-weakcorr-0.txt
+3-5-5-weakcorr-6.txt
+3-10-2-strongcorr-3.txt
+3-15-5-uncorr-8.txt
+3-20-5-strongcorr-6.txt
+4-5-2-weakcorr-7.txt
+4-10-5-uncorr-0.txt
+4-15-5-uncorr-5.txt
+4-20-5-strongcorr-4.txt
+2-30-2-strongcorr-0.txt
+4-30-2-strongcorr-0.txt

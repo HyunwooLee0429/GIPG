@@ -1,0 +1,157 @@
+building model of GNEP knapsack game
+
+NEP with 3 players:
+
+Player 0 of variable indices from 0 to 4
+Optimization problem with 5 variables
+
+min 	-40 x_0 - 81 x_1 - 32 x_2 - 102 x_3 - 83 x_4
+s.t.	x_0 <= 1.000000
+    	-x_0 <= 0.000000
+    	x_1 <= 1.000000
+    	-x_1 <= 0.000000
+    	x_2 <= 1.000000
+    	-x_2 <= 0.000000
+    	x_3 <= 1.000000
+    	-x_3 <= 0.000000
+    	x_4 <= 1.000000
+    	-x_4 <= 0.000000
+    	x_0 + x_5 + x_10 <= 1.000000
+    	x_1 + x_6 + x_11 <= 1.000000
+    	x_2 + x_7 + x_12 <= 1.000000
+    	x_3 + x_8 + x_13 <= 3.000000
+    	x_4 + x_9 + x_14 <= 3.000000
+    	30 x_0 + 74 x_1 + 36 x_2 + 97 x_3 + 86 x_4 <= 161.000000
+    	
+integer variables: 0 1 2 3 4 
+Player 1 of variable indices from 5 to 9
+Optimization problem with 5 variables
+
+min 	-51 x_5 - 15 x_6 - 9 x_7 - 61 x_8 - 29 x_9
+s.t.	x_5 <= 1.000000
+    	-x_5 <= 0.000000
+    	x_6 <= 1.000000
+    	-x_6 <= 0.000000
+    	x_7 <= 1.000000
+    	-x_7 <= 0.000000
+    	x_8 <= 1.000000
+    	-x_8 <= 0.000000
+    	x_9 <= 1.000000
+    	-x_9 <= 0.000000
+    	x_0 + x_5 + x_10 <= 1.000000
+    	x_1 + x_6 + x_11 <= 1.000000
+    	x_2 + x_7 + x_12 <= 1.000000
+    	x_3 + x_8 + x_13 <= 3.000000
+    	x_4 + x_9 + x_14 <= 3.000000
+    	48 x_5 + 17 x_6 + 7 x_7 + 52 x_8 + 37 x_9 <= 80.000000
+    	
+integer variables: 5 6 7 8 9 
+Player 2 of variable indices from 10 to 14
+Optimization problem with 5 variables
+
+min 	-62 x_10 - 54 x_11 - 71 x_12 - 97 x_13 - 88 x_14
+s.t.	x_10 <= 1.000000
+    	-x_10 <= 0.000000
+    	x_11 <= 1.000000
+    	-x_11 <= 0.000000
+    	x_12 <= 1.000000
+    	-x_12 <= 0.000000
+    	x_13 <= 1.000000
+    	-x_13 <= 0.000000
+    	x_14 <= 1.000000
+    	-x_14 <= 0.000000
+    	x_0 + x_5 + x_10 <= 1.000000
+    	x_1 + x_6 + x_11 <= 1.000000
+    	x_2 + x_7 + x_12 <= 1.000000
+    	x_3 + x_8 + x_13 <= 3.000000
+    	x_4 + x_9 + x_14 <= 3.000000
+    	67 x_10 + 51 x_11 + 77 x_12 + 98 x_13 + 79 x_14 <= 186.000000
+    	
+integer variables: 10 11 12 13 14 
+initial eta lower bounds: 0 0 0 
+initial eta upper bounds: 0 0 0 
+no equilibrium found right now
+
+eta_0 bounded by [-181, -0]
+eta_1 bounded by [-93, -0]
+eta_2 bounded by [-198, -0]
+computation time of eta bounds with MIP gap 0.0001 is 0.003262 seconds
+Root node problem: 
+Optimization problem with 18 variables
+
+min 	-62 x_10 - 54 x_11 - 71 x_12 - 97 x_13 - 88 x_14 - 51 x_5 - 15 x_6 - 9 x_7 - 61 x_8 - 29 x_9 - 40 x_0 - 81 x_1 - 32 x_2 - 102 x_3 - 83 x_4 - x_15 - x_16 - x_17
+s.t.	x_0 <= 1.000000
+    	-x_0 <= 0.000000
+    	x_1 <= 1.000000
+    	-x_1 <= 0.000000
+    	x_2 <= 1.000000
+    	-x_2 <= 0.000000
+    	x_3 <= 1.000000
+    	-x_3 <= 0.000000
+    	x_4 <= 1.000000
+    	-x_4 <= 0.000000
+    	x_0 + x_5 + x_10 <= 1.000000
+    	x_1 + x_6 + x_11 <= 1.000000
+    	x_2 + x_7 + x_12 <= 1.000000
+    	x_3 + x_8 + x_13 <= 3.000000
+    	x_4 + x_9 + x_14 <= 3.000000
+    	30 x_0 + 74 x_1 + 36 x_2 + 97 x_3 + 86 x_4 <= 161.000000
+    	x_5 <= 1.000000
+    	-x_5 <= 0.000000
+    	x_6 <= 1.000000
+    	-x_6 <= 0.000000
+    	x_7 <= 1.000000
+    	-x_7 <= 0.000000
+    	x_8 <= 1.000000
+    	-x_8 <= 0.000000
+    	x_9 <= 1.000000
+    	-x_9 <= 0.000000
+    	48 x_5 + 17 x_6 + 7 x_7 + 52 x_8 + 37 x_9 <= 80.000000
+    	x_10 <= 1.000000
+    	-x_10 <= 0.000000
+    	x_11 <= 1.000000
+    	-x_11 <= 0.000000
+    	x_12 <= 1.000000
+    	-x_12 <= 0.000000
+    	x_13 <= 1.000000
+    	-x_13 <= 0.000000
+    	x_14 <= 1.000000
+    	-x_14 <= 0.000000
+    	67 x_10 + 51 x_11 + 77 x_12 + 98 x_13 + 79 x_14 <= 186.000000
+    	-x_15 <= 181.000000
+    	x_15 <= -0.000000
+    	-x_16 <= 93.000000
+    	x_16 <= -0.000000
+    	-x_17 <= 198.000000
+    	x_17 <= -0.000000
+    	
+integer variables: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 
+number of local cuts in the node (and parents) in which the NE was found: 0
+depth of node in which the NE was found: 8
+
+NEFreeSetBuildingTime: 0.000411 seconds
+FinalStepICBuildingTime: 0.001288 seconds
+rayBuildingTime: 0.001343 seconds
+totalNodeSolveTime: 0.029504 seconds
+totalBestResponseTime: 0.007538 seconds
+totalCutDerivationTime: 0.003447 seconds
+
+
+----------------------------------------
+1 NE found:
+--
+NE 1 0 0 1 0 0 1 1 1 0 0 0 0 1 1 
+of social welfare -412
+with best response values -142 -85 -185 
+and differences to best response values 0 0 0 
+--
+
+computation time: 0.047724 seconds
+cut computation time: 0.003447 seconds
+number of nodes explored: 126
+number of cuts added: 87
+anti cycling measures taken: false
+----------------------------------------
+
+result,/Users/roberthildebrand/Documents/GitHub/Grants/branch-and-cut-for-ipgs/instances/GNEP_knapsack_instances/3-5-5-weakcorr-6.txt,GNEP,GNEP-fullInteger,basicAlgorithm,intersectionCuts,localCuts,false,manyEtasGurobi,mostFractional,0.000000001,SOLUTION_FOUND,1,126,87,0.047724,0.003447,0
+writing one-line output in /Users/roberthildebrand/Documents/GitHub/GIPG/scripts/duguet_compare/sample/_tmp_result.txt

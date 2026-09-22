@@ -1,0 +1,121 @@
+building model of GNEP knapsack game
+
+NEP with 2 players:
+
+Player 0 of variable indices from 0 to 4
+Optimization problem with 5 variables
+
+min 	-78 x_0 - 7 x_1 - 28 x_2 - 60 x_3 - 42 x_4
+s.t.	x_0 <= 1.000000
+    	-x_0 <= 0.000000
+    	x_1 <= 1.000000
+    	-x_1 <= 0.000000
+    	x_2 <= 1.000000
+    	-x_2 <= 0.000000
+    	x_3 <= 1.000000
+    	-x_3 <= 0.000000
+    	x_4 <= 1.000000
+    	-x_4 <= 0.000000
+    	x_0 + x_5 <= 1.000000
+    	x_1 + x_6 <= 1.000000
+    	x_2 + x_7 <= 1.000000
+    	x_3 + x_8 <= 2.000000
+    	x_4 + x_9 <= 1.000000
+    	40 x_0 + 32 x_1 + 90 x_2 + 91 x_3 + 48 x_4 <= 91.000000
+    	
+integer variables: 0 1 2 3 4 
+Player 1 of variable indices from 5 to 9
+Optimization problem with 5 variables
+
+min 	-55 x_5 - 15 x_6 - 29 x_7 - 37 x_8 - 10 x_9
+s.t.	x_5 <= 1.000000
+    	-x_5 <= 0.000000
+    	x_6 <= 1.000000
+    	-x_6 <= 0.000000
+    	x_7 <= 1.000000
+    	-x_7 <= 0.000000
+    	x_8 <= 1.000000
+    	-x_8 <= 0.000000
+    	x_9 <= 1.000000
+    	-x_9 <= 0.000000
+    	x_0 + x_5 <= 1.000000
+    	x_1 + x_6 <= 1.000000
+    	x_2 + x_7 <= 1.000000
+    	x_3 + x_8 <= 2.000000
+    	x_4 + x_9 <= 1.000000
+    	58 x_5 + 67 x_6 + 69 x_7 + 38 x_8 + 91 x_9 <= 91.000000
+    	
+integer variables: 5 6 7 8 9 
+initial eta lower bounds: 0 0 
+initial eta upper bounds: 0 0 
+no equilibrium found right now
+
+eta_0 bounded by [-122, -0]
+eta_1 bounded by [-88, -0]
+computation time of eta bounds with MIP gap 0.0001 is 0.009037 seconds
+Root node problem: 
+Optimization problem with 12 variables
+
+min 	-55 x_5 - 15 x_6 - 29 x_7 - 37 x_8 - 10 x_9 - 78 x_0 - 7 x_1 - 28 x_2 - 60 x_3 - 42 x_4 - x_10 - x_11
+s.t.	x_0 <= 1.000000
+    	-x_0 <= 0.000000
+    	x_1 <= 1.000000
+    	-x_1 <= 0.000000
+    	x_2 <= 1.000000
+    	-x_2 <= 0.000000
+    	x_3 <= 1.000000
+    	-x_3 <= 0.000000
+    	x_4 <= 1.000000
+    	-x_4 <= 0.000000
+    	x_0 + x_5 <= 1.000000
+    	x_1 + x_6 <= 1.000000
+    	x_2 + x_7 <= 1.000000
+    	x_3 + x_8 <= 2.000000
+    	x_4 + x_9 <= 1.000000
+    	40 x_0 + 32 x_1 + 90 x_2 + 91 x_3 + 48 x_4 <= 91.000000
+    	x_5 <= 1.000000
+    	-x_5 <= 0.000000
+    	x_6 <= 1.000000
+    	-x_6 <= 0.000000
+    	x_7 <= 1.000000
+    	-x_7 <= 0.000000
+    	x_8 <= 1.000000
+    	-x_8 <= 0.000000
+    	x_9 <= 1.000000
+    	-x_9 <= 0.000000
+    	58 x_5 + 67 x_6 + 69 x_7 + 38 x_8 + 91 x_9 <= 91.000000
+    	-x_10 <= 122.000000
+    	x_10 <= -0.000000
+    	-x_11 <= 88.000000
+    	x_11 <= -0.000000
+    	
+integer variables: 0 1 2 3 4 5 6 7 8 9 
+number of local cuts in the node (and parents) in which the NE was found: 0
+depth of node in which the NE was found: 6
+
+NEFreeSetBuildingTime: 9.1e-05 seconds
+FinalStepICBuildingTime: 0.000201 seconds
+rayBuildingTime: 0.000471 seconds
+totalNodeSolveTime: 0.015015 seconds
+totalBestResponseTime: 0.004484 seconds
+totalCutDerivationTime: 0.000886 seconds
+
+
+----------------------------------------
+1 NE found:
+--
+NE 1 0 0 0 1 0 0 0 1 0 
+of social welfare -157
+with best response values -120 -37 
+and differences to best response values 0 0 
+--
+
+computation time: 0.036106 seconds
+cut computation time: 0.000886 seconds
+number of nodes explored: 50
+number of cuts added: 16
+anti cycling measures taken: false
+----------------------------------------
+
+result,/Users/roberthildebrand/Documents/GitHub/Grants/branch-and-cut-for-ipgs/instances/GNEP_knapsack_instances/2-5-2-uncorr-4.txt,GNEP,GNEP-fullInteger,basicAlgorithm,intersectionCuts,localCuts,false,manyEtasGurobi,mostFractional,0.000000001,SOLUTION_FOUND,1,50,16,0.036106,0.000886,0
+writing one-line output in /Users/roberthildebrand/Documents/GitHub/GIPG/scripts/duguet_compare/sample/_tmp_result.txt

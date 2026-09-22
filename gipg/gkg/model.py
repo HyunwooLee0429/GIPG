@@ -42,6 +42,7 @@ def build_master_model(
     threads: Optional[int] = None,
     seed: Optional[int] = None,
     verbose: bool = False,
+    log_file: Optional[str] = None,
 ) -> GKGModel:
     """Build the master MILP for GKG.
 
@@ -59,6 +60,11 @@ def build_master_model(
     n, m = inst.n, inst.m
     mdl = gp.Model("GKG_master")
     mdl.Params.OutputFlag = 1 if verbose else 0
+    if log_file is not None:
+        # Full Gurobi log to file (node log, root bound, callback timing) without console output.
+        mdl.Params.OutputFlag = 1
+        mdl.Params.LogToConsole = 1 if verbose else 0
+        mdl.Params.LogFile = str(log_file)
     mdl.Params.LazyConstraints = 1
     mdl.Params.Threads = 16 if threads is None else int(threads)
     if time_limit is not None:

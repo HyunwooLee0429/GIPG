@@ -1,0 +1,193 @@
+building model of GNEP knapsack game
+
+NEP with 4 players:
+
+Player 0 of variable indices from 0 to 4
+Optimization problem with 5 variables
+
+min 	-46 x_0 - 85 x_1 - 30 x_2 - 12 x_3 - 29 x_4
+s.t.	x_0 <= 1.000000
+    	-x_0 <= 0.000000
+    	x_1 <= 1.000000
+    	-x_1 <= 0.000000
+    	x_2 <= 1.000000
+    	-x_2 <= 0.000000
+    	x_3 <= 1.000000
+    	-x_3 <= 0.000000
+    	x_4 <= 1.000000
+    	-x_4 <= 0.000000
+    	x_0 + x_5 + x_10 + x_15 <= 3.000000
+    	x_1 + x_6 + x_11 + x_16 <= 2.000000
+    	x_2 + x_7 + x_12 + x_17 <= 3.000000
+    	x_3 + x_8 + x_13 + x_18 <= 3.000000
+    	x_4 + x_9 + x_14 + x_19 <= 4.000000
+    	40 x_0 + 92 x_1 + 34 x_2 + 11 x_3 + 24 x_4 <= 92.000000
+    	
+integer variables: 0 1 2 3 4 
+Player 1 of variable indices from 5 to 9
+Optimization problem with 5 variables
+
+min 	-65 x_5 - 32 x_6 - 15 x_7 - 63 x_8 - 83 x_9
+s.t.	x_5 <= 1.000000
+    	-x_5 <= 0.000000
+    	x_6 <= 1.000000
+    	-x_6 <= 0.000000
+    	x_7 <= 1.000000
+    	-x_7 <= 0.000000
+    	x_8 <= 1.000000
+    	-x_8 <= 0.000000
+    	x_9 <= 1.000000
+    	-x_9 <= 0.000000
+    	x_0 + x_5 + x_10 + x_15 <= 3.000000
+    	x_1 + x_6 + x_11 + x_16 <= 2.000000
+    	x_2 + x_7 + x_12 + x_17 <= 3.000000
+    	x_3 + x_8 + x_13 + x_18 <= 3.000000
+    	x_4 + x_9 + x_14 + x_19 <= 4.000000
+    	58 x_5 + 27 x_6 + 5 x_7 + 58 x_8 + 75 x_9 <= 75.000000
+    	
+integer variables: 5 6 7 8 9 
+Player 2 of variable indices from 10 to 14
+Optimization problem with 5 variables
+
+min 	-76 x_10 - 79 x_11 - 69 x_12 - 20 x_13 - 29 x_14
+s.t.	x_10 <= 1.000000
+    	-x_10 <= 0.000000
+    	x_11 <= 1.000000
+    	-x_11 <= 0.000000
+    	x_12 <= 1.000000
+    	-x_12 <= 0.000000
+    	x_13 <= 1.000000
+    	-x_13 <= 0.000000
+    	x_14 <= 1.000000
+    	-x_14 <= 0.000000
+    	x_0 + x_5 + x_10 + x_15 <= 3.000000
+    	x_1 + x_6 + x_11 + x_16 <= 2.000000
+    	x_2 + x_7 + x_12 + x_17 <= 3.000000
+    	x_3 + x_8 + x_13 + x_18 <= 3.000000
+    	x_4 + x_9 + x_14 + x_19 <= 4.000000
+    	77 x_10 + 69 x_11 + 75 x_12 + 12 x_13 + 25 x_14 <= 77.000000
+    	
+integer variables: 10 11 12 13 14 
+Player 3 of variable indices from 15 to 19
+Optimization problem with 5 variables
+
+min 	-87 x_15 - 5 x_16 - 54 x_17 - 58 x_18 - 75 x_19
+s.t.	x_15 <= 1.000000
+    	-x_15 <= 0.000000
+    	x_16 <= 1.000000
+    	-x_16 <= 0.000000
+    	x_17 <= 1.000000
+    	-x_17 <= 0.000000
+    	x_18 <= 1.000000
+    	-x_18 <= 0.000000
+    	x_19 <= 1.000000
+    	-x_19 <= 0.000000
+    	x_0 + x_5 + x_10 + x_15 <= 3.000000
+    	x_1 + x_6 + x_11 + x_16 <= 2.000000
+    	x_2 + x_7 + x_12 + x_17 <= 3.000000
+    	x_3 + x_8 + x_13 + x_18 <= 3.000000
+    	x_4 + x_9 + x_14 + x_19 <= 4.000000
+    	95 x_15 + 4 x_16 + 46 x_17 + 59 x_18 + 76 x_19 <= 95.000000
+    	
+integer variables: 15 16 17 18 19 
+initial eta lower bounds: 0 0 0 0 
+initial eta upper bounds: 0 0 0 0 
+no equilibrium found right now
+
+eta_0 bounded by [-103, -0]
+eta_1 bounded by [-96, -0]
+eta_2 bounded by [-95, -0]
+eta_3 bounded by [-104, -0]
+computation time of eta bounds with MIP gap 0.0001 is 0.004142 seconds
+Root node problem: 
+Optimization problem with 24 variables
+
+min 	-87 x_15 - 5 x_16 - 54 x_17 - 58 x_18 - 75 x_19 - 76 x_10 - 79 x_11 - 69 x_12 - 20 x_13 - 29 x_14 - 65 x_5 - 32 x_6 - 15 x_7 - 63 x_8 - 83 x_9 - 46 x_0 - 85 x_1 - 30 x_2 - 12 x_3 - 29 x_4 - x_20 - x_21 - x_22 - x_23
+s.t.	x_0 <= 1.000000
+    	-x_0 <= 0.000000
+    	x_1 <= 1.000000
+    	-x_1 <= 0.000000
+    	x_2 <= 1.000000
+    	-x_2 <= 0.000000
+    	x_3 <= 1.000000
+    	-x_3 <= 0.000000
+    	x_4 <= 1.000000
+    	-x_4 <= 0.000000
+    	x_0 + x_5 + x_10 + x_15 <= 3.000000
+    	x_1 + x_6 + x_11 + x_16 <= 2.000000
+    	x_2 + x_7 + x_12 + x_17 <= 3.000000
+    	x_3 + x_8 + x_13 + x_18 <= 3.000000
+    	x_4 + x_9 + x_14 + x_19 <= 4.000000
+    	40 x_0 + 92 x_1 + 34 x_2 + 11 x_3 + 24 x_4 <= 92.000000
+    	x_5 <= 1.000000
+    	-x_5 <= 0.000000
+    	x_6 <= 1.000000
+    	-x_6 <= 0.000000
+    	x_7 <= 1.000000
+    	-x_7 <= 0.000000
+    	x_8 <= 1.000000
+    	-x_8 <= 0.000000
+    	x_9 <= 1.000000
+    	-x_9 <= 0.000000
+    	58 x_5 + 27 x_6 + 5 x_7 + 58 x_8 + 75 x_9 <= 75.000000
+    	x_10 <= 1.000000
+    	-x_10 <= 0.000000
+    	x_11 <= 1.000000
+    	-x_11 <= 0.000000
+    	x_12 <= 1.000000
+    	-x_12 <= 0.000000
+    	x_13 <= 1.000000
+    	-x_13 <= 0.000000
+    	x_14 <= 1.000000
+    	-x_14 <= 0.000000
+    	77 x_10 + 69 x_11 + 75 x_12 + 12 x_13 + 25 x_14 <= 77.000000
+    	x_15 <= 1.000000
+    	-x_15 <= 0.000000
+    	x_16 <= 1.000000
+    	-x_16 <= 0.000000
+    	x_17 <= 1.000000
+    	-x_17 <= 0.000000
+    	x_18 <= 1.000000
+    	-x_18 <= 0.000000
+    	x_19 <= 1.000000
+    	-x_19 <= 0.000000
+    	95 x_15 + 4 x_16 + 46 x_17 + 59 x_18 + 76 x_19 <= 95.000000
+    	-x_20 <= 103.000000
+    	x_20 <= -0.000000
+    	-x_21 <= 96.000000
+    	x_21 <= -0.000000
+    	-x_22 <= 95.000000
+    	x_22 <= -0.000000
+    	-x_23 <= 104.000000
+    	x_23 <= -0.000000
+    	
+integer variables: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
+number of local cuts in the node (and parents) in which the NE was found: 0
+depth of node in which the NE was found: 15
+
+NEFreeSetBuildingTime: 0.001424 seconds
+FinalStepICBuildingTime: 0.00577 seconds
+rayBuildingTime: 0.004645 seconds
+totalNodeSolveTime: 0.135905 seconds
+totalBestResponseTime: 0.024658 seconds
+totalCutDerivationTime: 0.013132 seconds
+
+
+----------------------------------------
+1 NE found:
+--
+NE 1 0 1 1 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0 
+of social welfare -337
+with best response values -88 -83 -79 -87 
+and differences to best response values 0 0 0 0 
+--
+
+computation time: 0.189607 seconds
+cut computation time: 0.013132 seconds
+number of nodes explored: 571
+number of cuts added: 292
+anti cycling measures taken: false
+----------------------------------------
+
+result,/Users/roberthildebrand/Documents/GitHub/Grants/branch-and-cut-for-ipgs/instances/GNEP_knapsack_instances/4-5-2-weakcorr-7.txt,GNEP,GNEP-fullInteger,basicAlgorithm,intersectionCuts,localCuts,false,manyEtasGurobi,mostFractional,0.000000001,SOLUTION_FOUND,1,571,292,0.189607,0.013132,0
+writing one-line output in /Users/roberthildebrand/Documents/GitHub/GIPG/scripts/duguet_compare/sample/_tmp_result.txt

@@ -31,6 +31,8 @@ class GZRResult:
     first_pne_time: Optional[float] = None  # wall-clock seconds to first verified PNE
     mip_gap: Optional[float] = None         # Gurobi MIPGap (None if unavailable)
     obj_bound: Optional[float] = None       # Gurobi ObjBound (None if unavailable)
+    node_count: Optional[float] = None      # Gurobi NodeCount
+    cut_trace: Optional[List[Dict[str, Any]]] = None  # one record per separated CEI (if requested)
 
 
 def solve_gzr(
@@ -46,6 +48,8 @@ def solve_gzr(
     stop_at_first: bool = False,
     verbose: bool = False,
     tol: float = 1e-9,
+    log_file: Optional[str] = None,
+    trace_cuts: bool = False,
 ) -> GZRResult:
     """Solve for an alpha-approx GNE using CEI-GZR (lazy CEIs).
 
@@ -70,6 +74,7 @@ def solve_gzr(
         mip_gap=mip_gap,
         threads=threads,
         verbose=verbose,
+        log_file=log_file,
     )
     mdl = gkgm.model
     n, m = inst.n, inst.m
@@ -86,6 +91,7 @@ def solve_gzr(
                 gkgm.zfull[(i, j)].Start = 1.0 if opp_use >= int(inst.c[j]) else 0.0
 
     stats = {"cuts_added": 0, "br_calls": 0, "first_pne_time": None}
+    cut_trace: List[Dict[str, Any]] = []
     start = time.time()
 
     def callback(model: gp.Model, where: int) -> None:
@@ -123,6 +129,12 @@ def solve_gzr(
                 lhs, rhs = build_cei_lhs_rhs(inst, cut=cut, x_vars=gkgm.x, zfull_vars=gkgm.zfull)
                 model.cbLazy(lhs >= rhs)
                 stats["cuts_added"] += 1
+                if trace_cuts:
+                    cut_trace.append({
+                        "t": round(time.time() - start, 4), "cut": stats["cuts_added"],
+                        "player": i, "profit_cur": pi_cur, "profit_br": pi_hat,
+                        "regret": pi_hat - pi_cur, "incumbent_welfare": float(model.cbGet(GRB.Callback.MIPSOL_OBJ)),
+                    })
 
         if not any_violation:
             # Record time of first verified PNE (only once)
@@ -168,6 +180,10 @@ def solve_gzr(
         obj_bound = float(mdl.ObjBound)
     except Exception:
         obj_bound = None
+    try:
+        node_count = float(mdl.NodeCount)
+    except Exception:
+        node_count = None
 
     return GZRResult(
         status=status,
@@ -180,4 +196,6 @@ def solve_gzr(
         first_pne_time=stats["first_pne_time"],
         mip_gap=mip_gap,
         obj_bound=obj_bound,
+        node_count=node_count,
+        cut_trace=cut_trace if trace_cuts else None,
     )
