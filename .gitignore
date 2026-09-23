@@ -8,3 +8,4 @@ dist/
 venv/
 gurobi.log
 .DS_Store
+results/duguet_gnep_knapsack_results.csv 

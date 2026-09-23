@@ -93,6 +93,7 @@ gipg/           package, one subpackage per game class
     objectives.py      cost / welfare evaluation
     best_response.py   single-player best-response oracle
     cuts.py            CEI construction
+    duguet_io.py       reader for the instance files of Duguet et al. (gkg only)
     model.py           master MILP  (isbp: folded into gzr.py)
     gzr.py             GZR branch-and-cut loop
     abs_search.py      alpha-bisection search
@@ -101,14 +102,16 @@ gipg/           package, one subpackage per game class
 notebooks/      one notebook per experiment
 data/           benchmark instances
 results/        result CSVs behind the tables in the paper
-scripts/        table generation
+scripts/        table generation and the comparison against Duguet et al.
 ```
 
 ## Reproducing the experiments
 
-Instances for NFG, GKG and GKGB are shipped in `data/`; ISBP instances are
-generated deterministically from `(n, m, w, u, seed)` and need no data files.
-Run the notebook for a game and it writes its CSV into `results/`.
+Instances for NFG, GKGB and the GKG scalability study are shipped in `data/`;
+ISBP instances are generated deterministically from `(n, m, w, u, seed)` and
+need no data files, and the GKG benchmark uses the instance files of Duguet
+et al. (see below). Run the notebook for a game and it writes its CSV into
+`results/`.
 
 | Notebook | Produces | Tables |
 | --- | --- | --- |
@@ -118,8 +121,6 @@ Run the notebook for a game and it writes its CSV into `results/`.
 | `nfg_generate_instances.ipynb` | `data/nfg/*.json` | — |
 | `nfg_run.ipynb`, `nfg_run_no_vest.ipynb` | `nfg_exp1.csv`, `nfg_exp1_no_vest.csv` | NFG summary, by capacity and players, comprehensive, VEST comparison |
 | `nfg_recompute_social_optimum.ipynb` | `nfg_social_optimum.csv` | recomputes the social-optimum reference at a 1,200 s limit |
-| `gkg_generate_instances.ipynb` | `data/gkg/*.json` | — |
-| `gkg_run_benchmark.ipynb` | `gkg_exp1_benchmark.csv` | GKG benchmark comparison |
 | `gkg_run_scalability.ipynb` | `gkg_exp1_scalability.csv` | GKG summary, comprehensive |
 | `gkgb_run_typeC.ipynb`, `gkgb_run_typeBC.ipynb` | `gkgb_exp1_*.csv`, `gkgb_exp2_*.csv` | GKGB summary, ABS, comprehensive |
 
@@ -130,6 +131,36 @@ CSVs, so those tables cannot drift apart:
 python scripts/make_nfg_tables.py          # writes results/nfg_tables.tex
 ```
 
+## Comparison with Duguet et al.
+
+The GKG benchmark row of the paper is run on the 1,260 generalized knapsack
+instances published by Duguet et al., not on instances of our own, so that both
+methods are evaluated on identical data. Their instances and their raw results
+are not redistributed here; clone their repository and point the scripts at it.
+
+```bash
+git clone https://github.com/AloisDuguet/branch-and-cut-for-ipgs.git
+
+# our runs: 16 threads, and single-threaded to match their single-core setup
+python scripts/run_duguet_benchmark.py \
+    branch-and-cut-for-ipgs/instances/GNEP_knapsack_instances \
+    --out results/gkg_duguet_instances.csv
+python scripts/run_duguet_benchmark.py \
+    branch-and-cut-for-ipgs/instances/GNEP_knapsack_instances \
+    --out results/gkg_duguet_1thread.csv --threads 1 --skip-optimal
+
+# per-cell comparison table
+python scripts/compare_duguet.py --ours results/gkg_duguet_1thread.csv \
+    --theirs branch-and-cut-for-ipgs/results/GNEPKnapsack/results.csv
+```
+
+`run_duguet_benchmark.py` runs two configurations per instance. `find` gives GZR
+no warm start and stops at the first equilibrium, matching the task their
+branch-and-cut solves; `optimal` warm-starts with RRR-BRD and optimizes to gap
+zero, returning the socially optimal equilibrium and the price of stability,
+which their method does not address. `gipg.gkg.duguet_io` reads their instance
+file format.
+
 ## Solver settings
 
 The master problem uses `LazyConstraints=1`; the social-optimum model, which
@@ -139,7 +170,11 @@ both the master and the best-response subproblems, so a reported status of
 `OPTIMAL` certifies optimality within the default relative gap rather than in
 exact arithmetic. A CEI violation is declared when the incumbent's regret exceeds
 `1e-9`. Both the master and the best-response models run with 16 threads by
-default; pass `threads=` to change this.
+default; pass `threads=` to change this. Every result in the paper uses 16
+threads except the comparison against Duguet et al., whose experiments use a
+single core: that benchmark is rerun with `--threads 1`, which also sets the
+best-response threads. The setting makes little difference here — 0.066 s mean
+against 0.072 s with 16 threads.
 
 The VEST cut and, for ISBP, the player-anchoring constraint are valid for exact
 equilibria only. `solve_abs` therefore imposes them just in its initial test at
