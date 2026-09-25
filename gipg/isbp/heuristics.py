@@ -79,7 +79,40 @@ def random_feasible_profile(inst: ISBPInstance, rng: random.Random, max_tries: i
         if ok:
             return x
 
-    raise RuntimeError("Failed to generate a feasible random profile (increase max_tries or ensure feasibility).")
+    return greedy_feasible_profile(inst)
+
+
+def greedy_feasible_profile(inst: ISBPInstance) -> Dict[int, Dict[int, int]]:
+    """Deterministic feasible profile: fill bins in order, one player at a time.
+
+    Because items are splittable, a feasible profile exists whenever the total
+    capacity is at least the total weight, and filling each bin to capacity
+    before moving to the next one finds one. This is the fallback for the
+    random construction above, which can fail on tight instances: it draws a
+    random amount for each bin rather than the largest that fits, so on
+    instances with little or no slack it may leave capacity stranded and never
+    place the last player.
+    """
+    rem_cap = {j: int(inst.capacities[j]) for j in inst.bins}
+    x = _empty_profile(inst)
+    bins = list(inst.bins)
+    k = 0
+
+    for i in inst.players:
+        remaining = int(inst.weights[i])
+        while remaining > 0:
+            while k < len(bins) and rem_cap[bins[k]] <= 0:
+                k += 1
+            if k >= len(bins):
+                raise RuntimeError(
+                    "infeasible instance: total capacity is below total weight"
+                )
+            j = bins[k]
+            take = min(remaining, rem_cap[j])
+            x[i][j] += take
+            rem_cap[j] -= take
+            remaining -= take
+    return x
 
 
 # ---------------------------------------------------------------------------
