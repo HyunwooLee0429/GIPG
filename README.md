@@ -1,7 +1,8 @@
 # GIPG — Pure Nash equilibria of generalized integer programming games
 
 Reference implementation for the paper *Computing Equilibria in Integer
-Programming Games with Shared Constraints*.
+Programming Games with Shared Constraints*
+([arXiv:2610.04279](https://arxiv.org/abs/2610.04279)).
 
 A **generalized integer programming game** (GIPG) is a non-cooperative game in
 which every player solves an integer program and shared constraints couple the
@@ -191,10 +192,14 @@ Results in the paper were produced with Gurobi 13.0 on an Intel Core Ultra 7
 ## Citation
 
 ```bibtex
-@article{gipg,
-  title  = {Computing Equilibria in Integer Programming Games with Shared Constraints},
-  author = {Hao, Bainian and Lee, Hyunwoo and Hildebrand, Robert and Michini, Carla},
-  year   = {2026}
+@misc{gipg,
+  title         = {Computing Equilibria in Integer Programming Games with Shared Constraints},
+  author        = {Hao, Bainian and Lee, Hyunwoo and Hildebrand, Robert and Michini, Carla},
+  year          = {2026},
+  eprint        = {2610.04279},
+  archivePrefix = {arXiv},
+  primaryClass  = {math.OC},
+  url           = {https://arxiv.org/abs/2610.04279}
 }
 ```
 
